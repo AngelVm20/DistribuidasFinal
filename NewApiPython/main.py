@@ -5,8 +5,12 @@ from flask_cors import CORS  # Importa la extensión Flask-CORS
 import json
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://3.128.34.41:5000"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
   # Habilita CORS en tu aplicación Flask
+
+@app.route('/', methods=['GET'])
+def hello_world():
+    return jsonify({'message': 'Hola Carlos'}), 200
 
 @app.route('/createItem', methods=['POST'])
 def create_item():
